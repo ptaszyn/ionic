@@ -1,0 +1,37 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>{{ aTopic ? 'Edit Topic' : 'New Topic' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen class="ion-padding">
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input [(ngModel)]="aTopic.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Id</ion-label>
+      <ion-input [(ngModel)]="aTopic.id"></ion-input>
+    </ion-item>
+    <br />
+    <br />
+    <ion-item>
+      <ion-label>Is Subscribe</ion-label>
+      <ion-toggle
+        [(ngModel)]="aTopic.isSubscribe"
+        [checked]="aTopic.isSubscribe"
+        slot="end"
+      ></ion-toggle>
+    </ion-item>
+    <br />
+    <br />
+    <ion-item>
+      <ion-label position="stacked">Notes</ion-label>
+      <ion-textarea [(ngModel)]="aTopic.notes"></ion-textarea>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-button (click)="save()">Save Topic</ion-button>

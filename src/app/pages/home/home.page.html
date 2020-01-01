@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content> </ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngFor="let message of messages">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{message.topicName}}</ion-card-title>
+        <ion-card-subtitle>{{message.time}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let info of message.informations" lines="full" (click)="loadInformation(message, info)">
+            <ion-icon
+              *ngIf="info.status === 'OK'"
+              name="checkmark"
+              color="success"
+              slot="start"
+            ></ion-icon>
+            <ion-icon
+              *ngIf="info.status === 'ERROR'"
+              name="close"
+              color="danger"
+              slot="start"
+            ></ion-icon>
+            <ion-label>
+              <h2>{{info.title}}</h2>
+              <p>{{info.text}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
